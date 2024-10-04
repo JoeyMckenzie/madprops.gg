@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import DangerButton from '@/Components/DangerButton.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import Modal from '@/Components/Modal.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { useForm } from '@inertiajs/vue3';
-import { nextTick, ref } from 'vue';
+import DangerButton from "@/Components/DangerButton.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import Modal from "@/Components/Modal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { useForm } from "@inertiajs/vue3";
+import { nextTick, ref } from "vue";
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
 
 const form = useForm({
-    password: '',
+    password: "",
 });
 
-const confirmUserDeletion = () => {
+function confirmUserDeletion() {
     confirmingUserDeletion.value = true;
 
     nextTick(() => passwordInput.value?.focus());
-};
+}
 
-const deleteUser = () => {
-    form.delete(route('profile.destroy'), {
+function deleteUser() {
+    form.delete(route("profile.destroy"), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => passwordInput.value?.focus(),
@@ -30,14 +30,14 @@ const deleteUser = () => {
             form.reset();
         },
     });
-};
+}
 
-const closeModal = () => {
+function closeModal() {
     confirmingUserDeletion.value = false;
 
     form.clearErrors();
     form.reset();
-};
+}
 </script>
 
 <template>
@@ -54,7 +54,9 @@ const closeModal = () => {
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <DangerButton @click="confirmUserDeletion">
+            Delete Account
+        </DangerButton>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">

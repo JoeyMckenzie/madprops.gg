@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import Dropdown from "@/Components/Dropdown.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
+import NavLink from "@/Components/NavLink.vue";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import { Link } from "@inertiajs/vue3";
+import { ref } from "vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -55,7 +55,7 @@ const showingNavigationDropdown = ref(false);
                                                 {{ $page.props.auth.user.name }}
 
                                                 <svg
-                                                    class="-me-0.5 ms-2 h-4 w-4"
+                                                    class="-me-0.5 ms-2 size-4"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
@@ -91,21 +91,21 @@ const showingNavigationDropdown = ref(false);
                         <!-- Hamburger -->
                         <div class="-me-2 flex items-center sm:hidden">
                             <button
-                                @click="
-                                    showingNavigationDropdown =
-                                        !showingNavigationDropdown
-                                "
                                 class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
+                                @click="
+                                    showingNavigationDropdown
+                                        = !showingNavigationDropdown
+                                "
                             >
                                 <svg
-                                    class="h-6 w-6"
+                                    class="size-6"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
                                         :class="{
-                                            hidden: showingNavigationDropdown,
+                                            'hidden': showingNavigationDropdown,
                                             'inline-flex':
                                                 !showingNavigationDropdown,
                                         }"
@@ -116,7 +116,7 @@ const showingNavigationDropdown = ref(false);
                                     />
                                     <path
                                         :class="{
-                                            hidden: !showingNavigationDropdown,
+                                            'hidden': !showingNavigationDropdown,
                                             'inline-flex':
                                                 showingNavigationDropdown,
                                         }"
@@ -181,8 +181,8 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Heading -->
             <header
-                class="bg-white shadow dark:bg-gray-800"
                 v-if="$slots.header"
+                class="bg-white shadow dark:bg-gray-800"
             >
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                     <slot name="header" />
