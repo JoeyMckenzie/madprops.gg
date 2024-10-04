@@ -35,7 +35,7 @@
         "vue-tsc": "^2.0.24"
     },
     "lint-staged": {
-        "**/*.{js,ts,json,vue}": "npm run fmt",
+        "**/*.{js,ts,json,vue}": "npm run lint",
         "**/*.php": "composer run fmt"
     }
 }
