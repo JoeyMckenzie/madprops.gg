@@ -1,0 +1,5 @@
+#!/bin/bash
+
+composer run ci
+composer run test
+

@@ -68,6 +68,7 @@
             "@test:types",
             "@test:integration"
         ],
+        "prepare": "git config core.hookspath .githooks",
         "lint": "./vendor/bin/phpstan analyze",
         "fmt": "./vendor/bin/pint -vv",
         "rector": "vendor/bin/rector process",
