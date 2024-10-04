@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import Dropdown from "@/Components/Dropdown.vue";
-import DropdownLink from "@/Components/DropdownLink.vue";
-import NavLink from "@/Components/NavLink.vue";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import ApplicationLogo from "@/components/ApplicationLogo.vue";
+import Dropdown from "@/components/Dropdown.vue";
+import DropdownLink from "@/components/DropdownLink.vue";
+import NavLink from "@/components/NavLink.vue";
+import ResponsiveNavLink from "@/components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
 
@@ -93,8 +93,8 @@ const showingNavigationDropdown = ref(false);
                             <button
                                 class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
                                 @click="
-                                    showingNavigationDropdown
-                                        = !showingNavigationDropdown
+                                    showingNavigationDropdown =
+                                        !showingNavigationDropdown
                                 "
                             >
                                 <svg
@@ -105,7 +105,7 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     <path
                                         :class="{
-                                            'hidden': showingNavigationDropdown,
+                                            hidden: showingNavigationDropdown,
                                             'inline-flex':
                                                 !showingNavigationDropdown,
                                         }"
@@ -116,7 +116,7 @@ const showingNavigationDropdown = ref(false);
                                     />
                                     <path
                                         :class="{
-                                            'hidden': !showingNavigationDropdown,
+                                            hidden: !showingNavigationDropdown,
                                             'inline-flex':
                                                 showingNavigationDropdown,
                                         }"
