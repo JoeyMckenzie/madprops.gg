@@ -1,8 +1,6 @@
 
 <?php
 
-declare(strict_types=1);
-
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\Config\RectorConfig;
@@ -42,7 +40,5 @@ return RectorConfig::configure()
     ->withSkip([
         PrivatizeFinalClassMethodRector::class => [
             __DIR__.'/app/Models/User.php',
-            __DIR__.'/app/Models/Order.php',
-            __DIR__.'/app/Models/Material.php',
         ],
     ]);

@@ -70,9 +70,7 @@ function submit() {
             <div class="mt-4 block">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400"
-                        >Remember me</span
-                    >
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
                 </label>
             </div>
 

@@ -93,8 +93,8 @@ const showingNavigationDropdown = ref(false);
                             <button
                                 class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
                                 @click="
-                                    showingNavigationDropdown =
-                                        !showingNavigationDropdown
+                                    showingNavigationDropdown
+                                        = !showingNavigationDropdown
                                 "
                             >
                                 <svg
@@ -105,7 +105,7 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     <path
                                         :class="{
-                                            hidden: showingNavigationDropdown,
+                                            'hidden': showingNavigationDropdown,
                                             'inline-flex':
                                                 !showingNavigationDropdown,
                                         }"
@@ -116,7 +116,7 @@ const showingNavigationDropdown = ref(false);
                                     />
                                     <path
                                         :class="{
-                                            hidden: !showingNavigationDropdown,
+                                            'hidden': !showingNavigationDropdown,
                                             'inline-flex':
                                                 showingNavigationDropdown,
                                         }"

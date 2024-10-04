@@ -23,7 +23,6 @@ export default antfu(
     },
     {
         ignores: [
-            "resources/js/Components/ui/**/*.{ts,vue}",
             "resources/js/types/global.d.ts",
             "node_modules",
             "package-lock.json",
