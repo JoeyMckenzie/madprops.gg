@@ -30,16 +30,16 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          version: ${{ matrix.pnpm }}
+          node-version: latest
 
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
 
       - name: Install node dependencies
-        run: pnpm install
+        run: npm ci
 
       - name: Rector Cache
         uses: actions/cache@v3
@@ -57,7 +57,7 @@ jobs:
         uses: extractions/setup-just@v2
 
       - name: Run CI checks
-        run: just ci
+        run: composer check
 
       - name: Copy .env
         run: cp .env.ci .env
