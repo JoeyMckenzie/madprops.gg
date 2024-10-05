@@ -16,6 +16,7 @@
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.1",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^2.9",
         "laravel/breeze": "^2.2",
@@ -81,6 +82,14 @@
         "check:test": [
             "@check",
             "@test:integration"
+        ],
+        "helper:generate": "php artisan ide-helper:generate",
+        "helper:models": "php artisan ide-helper:models",
+        "helper:meta": "php artisan ide-helper:meta",
+        "helper": [
+            "@helper:generate",
+            "@helper:models",
+            "@helper:meta"
         ]
     },
     "extra": {
