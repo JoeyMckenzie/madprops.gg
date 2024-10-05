@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import Checkbox from "@/components/Checkbox.vue";
-import InputError from "@/components/InputError.vue";
-import InputLabel from "@/components/InputLabel.vue";
-import PrimaryButton from "@/components/PrimaryButton.vue";
-import TextInput from "@/components/TextInput.vue";
+import Button from "@/components/ui/button/Button.vue";
+import Input from "@/components/ui/input/Input.vue";
+import Label from "@/components/ui/label/Label.vue";
 import GuestLayout from "@/layouts/GuestLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
+import logo from "@svg/logoipsum-332.svg";
 
 defineProps<{
     canResetPassword?: boolean;
@@ -20,76 +19,76 @@ const form = useForm({
 
 function submit() {
     form.post(route("login"), {
-        onFinish: () => {
-            form.reset("password");
-        },
+        onFinish: () => form.reset("password"),
     });
 }
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head title="Login" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
+        <form
+            class="min-h-screen w-full lg:grid lg:grid-cols-2"
+            @submit="submit"
+        >
+            <div class="flex items-center justify-center px-4 py-12 lg:px-0">
+                <div class="mx-auto grid w-[350px] gap-6">
+                    <img :src="logo" class="mx-auto size-16">
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
+                    <div class="grid gap-2 text-center">
+                        <h1 class="text-3xl font-bold">
+                            Login
+                        </h1>
+                        <p class="text-balance text-muted-foreground">
+                            Enter your email below to login to your account
+                        </p>
+                    </div>
+                    <div class="grid gap-4">
+                        <div class="grid gap-2">
+                            <Label for="email">Email</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="m@example.com"
+                                required
+                            />
+                        </div>
+                        <div class="grid gap-2">
+                            <div class="flex items-center">
+                                <Label for="password">Password</Label>
+                                <a
+                                    href="/forgot-password"
+                                    class="ml-auto inline-block text-sm underline"
+                                >
+                                    Forgot your password?
+                                </a>
+                            </div>
+                            <Input id="password" type="password" required />
+                        </div>
+                        <Button type="submit" class="w-full">
+                            Login
+                        </Button>
+                        <Button variant="outline" class="w-full">
+                            Login with Google
+                        </Button>
+                    </div>
+                    <div class="mt-4 text-center text-sm">
+                        Don't have an account?
+                        <Link :href="route('register')" class="underline">
+                            Sign up
+                        </Link>
+                    </div>
+                </div>
             </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
-                </label>
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
+            <div class="hidden bg-muted lg:block">
+                <img
+                    src="https://www.shadcn-vue.com/placeholder.svg"
+                    alt="Image"
+                    width="1920"
+                    height="1080"
+                    class="size-full object-cover dark:brightness-[0.2] dark:grayscale"
                 >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
             </div>
         </form>
     </GuestLayout>

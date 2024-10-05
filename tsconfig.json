@@ -6,6 +6,7 @@
         "moduleResolution": "bundler",
         "paths": {
             "@/*": ["./resources/js/*"],
+            "@svg/*": ["./resources/svg/*"],
             "ziggy-js": ["./vendor/tightenco/ziggy"]
         },
         "allowJs": true,

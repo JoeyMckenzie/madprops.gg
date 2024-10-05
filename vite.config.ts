@@ -1,3 +1,4 @@
+import { resolve } from "node:path";
 import vue from "@vitejs/plugin-vue";
 import laravel from "laravel-vite-plugin";
 import { defineConfig } from "vite";
@@ -18,4 +19,10 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            "@": resolve(__dirname, "resources/js"),
+            "@svg": resolve(__dirname, "resources/svg"),
+        },
+    },
 });
