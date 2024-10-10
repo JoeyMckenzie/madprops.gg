@@ -51,7 +51,6 @@ function submit() {
                     <div class="grid gap-4">
                         <div class="grid gap-2">
                             <Label for="email">Email</Label>
-
                             <Input
                                 id="email"
                                 v-model="form.email"
@@ -60,10 +59,8 @@ function submit() {
                                 required
                                 type="email"
                             />
-
                             <InputError
                                 :message="form.errors.email"
-                                class="mt-2"
                             />
                         </div>
                         <div class="grid gap-2">
@@ -87,7 +84,6 @@ function submit() {
                             />
                             <InputError
                                 :message="form.errors.password"
-                                class="mt-2"
                             />
                         </div>
                         <div class="flex flex-row justify-between text-sm">
