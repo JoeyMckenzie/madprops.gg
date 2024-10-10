@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <div class="dark:bg-black">
+    <div class="bg-background">
         <div class="min-h-screen">
             <nav>
                 <!-- Primary Navigation Menu -->
@@ -23,7 +23,7 @@ import { Link } from "@inertiajs/vue3";
                             </div>
                         </div>
 
-                        <div class="hidden sm:ms-6 sm:flex sm:items-center">
+                        <div class="ms-6 flex items-center">
                             <!-- Settings Dropdown -->
                             <div class="relative ms-3">
                                 <div class="flex flex-row items-center justify-center space-x-2">
