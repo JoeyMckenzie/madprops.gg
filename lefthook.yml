@@ -11,6 +11,9 @@ pre-push:
     vendors-audit:
       tags: backend security
       run: composer audit
+    tests:
+      tags: backend type checks
+      run: composer run test:types
 
 pre-commit:
   parallel: true

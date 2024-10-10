@@ -1,9 +1,8 @@
 import type { DefineComponent } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
-
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createApp, h } from "vue";
-import { ZiggyVue } from "../../vendor/tightenco/ziggy";
+import { ZiggyVue } from "ziggy-js";
 import "../css/app.css";
 import "./bootstrap";
 
@@ -25,4 +24,7 @@ createInertiaApp({
     progress: {
         color: "#4B5563",
     },
-});
+})
+    // eslint-disable-next-line no-console
+    .then(() => console.info("Inertia initialized!"))
+    .catch(console.error);
