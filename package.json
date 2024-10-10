@@ -4,7 +4,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc && vite build && vite build --ssr",
-        "lint": "eslint --fix --no-warn-ignored resources/js ./*.{js,ts,json}"
+        "lint": "eslint --fix --no-warn-ignored",
+        "lint:all": "eslint --fix --no-warn-ignored resources/js ./*.{js,ts,json,yml}"
     },
     "dependencies": {
         "@radix-icons/vue": "^1.0.0",
@@ -30,6 +31,7 @@
         "eslint": "^9.12.0",
         "eslint-plugin-tailwindcss": "^3.17.4",
         "laravel-vite-plugin": "^1.0",
+        "lefthook": "^1.7.18",
         "lint-staged": "^15.2.10",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.2.1",

@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.3",
         "inertiajs/inertia-laravel": "^1.0",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^v11.27",
         "laravel/pail": "^1.1",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
@@ -30,7 +30,7 @@
         "pestphp/pest-plugin-type-coverage": "^3.0",
         "pestphp/pest-plugin-watch": "^3.0",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^1.11",
+        "phpstan/phpstan": "^1.12",
         "phpstan/phpstan-deprecation-rules": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.6",
         "rector/rector": "^1.2"
@@ -70,7 +70,7 @@
             "@test:types",
             "@test:integration"
         ],
-        "prepare": "git config core.hookspath .githooks",
+        "prepare": "git config core.hookspath .githooks && lefthook install",
         "lint": "./vendor/bin/phpstan analyze",
         "lint:watch": "find app/ resources/ routes/ database/ tests/ phpstan.neon | entr -s 'composer run lint'",
         "fmt": "./vendor/bin/pint -vv",

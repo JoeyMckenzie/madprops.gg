@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Button from "@/components/ui/button/Button.vue";
 import Input from "@/components/ui/input/Input.vue";
 import Label from "@/components/ui/label/Label.vue";
 import GuestLayout from "@/layouts/GuestLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
-import logo from "@svg/logoipsum-332.svg";
 
 defineProps<{
     canResetPassword?: boolean;
@@ -34,7 +33,7 @@ function submit() {
         >
             <div class="flex items-center justify-center px-4 py-12 lg:px-0">
                 <div class="mx-auto grid w-[350px] gap-6">
-                    <img :src="logo" class="mx-auto size-16">
+                    <img alt="app logo" class="mx-auto size-16" src="/svg/logoipsum-332.svg">
 
                     <div class="grid gap-2 text-center">
                         <h1 class="text-3xl font-bold">
@@ -49,27 +48,27 @@ function submit() {
                             <Label for="email">Email</Label>
                             <Input
                                 id="email"
-                                type="email"
                                 placeholder="m@example.com"
                                 required
+                                type="email"
                             />
                         </div>
                         <div class="grid gap-2">
                             <div class="flex items-center">
                                 <Label for="password">Password</Label>
                                 <a
-                                    href="/forgot-password"
                                     class="ml-auto inline-block text-sm underline"
+                                    href="/forgot-password"
                                 >
                                     Forgot your password?
                                 </a>
                             </div>
-                            <Input id="password" type="password" required />
+                            <Input id="password" required type="password" />
                         </div>
-                        <Button type="submit" class="w-full">
+                        <Button class="w-full" type="submit">
                             Login
                         </Button>
-                        <Button variant="outline" class="w-full">
+                        <Button class="w-full" variant="outline">
                             Login with Google
                         </Button>
                     </div>
@@ -83,11 +82,11 @@ function submit() {
             </div>
             <div class="hidden bg-muted lg:block">
                 <img
-                    src="https://www.shadcn-vue.com/placeholder.svg"
                     alt="Image"
-                    width="1920"
-                    height="1080"
                     class="size-full object-cover dark:brightness-[0.2] dark:grayscale"
+                    height="1080"
+                    src="https://www.shadcn-vue.com/placeholder.svg"
+                    width="1920"
                 >
             </div>
         </form>

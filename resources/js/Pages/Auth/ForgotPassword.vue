@@ -1,8 +1,9 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import InputError from "@/components/InputError.vue";
 import InputLabel from "@/components/InputLabel.vue";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import TextInput from "@/components/TextInput.vue";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import GuestLayout from "@/layouts/GuestLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 
@@ -36,31 +37,48 @@ function submit() {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
+        <Card class="w-full max-w-sm">
+            <CardHeader>
+                <CardTitle class="text-2xl">
+                    Login
+                </CardTitle>
+                <CardDescription>
+                    Enter your email below to login to your account.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <form class="grid gap-4" @submit.prevent="submit">
+                    <div>
+                        <InputLabel for="email" value="Email" />
 
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
+                        <TextInput
+                            id="email"
+                            v-model="form.email"
+                            autocomplete="username"
+                            autofocus
+                            class="mt-1 block w-full"
+                            required
+                            type="email"
+                        />
 
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+                        <InputError :message="form.errors.email" class="mt-2" />
+                    </div>
 
-            <div class="mt-4 flex items-center justify-end">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Email Password Reset Link
-                </PrimaryButton>
-            </div>
-        </form>
+                    <div class="mt-4 flex items-center justify-end">
+                        <PrimaryButton
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
+                            Email Password Reset Link
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </CardContent>
+            <CardFooter>
+                <Button class="w-full">
+                    Sign in
+                </Button>
+            </CardFooter>
+        </Card>
     </GuestLayout>
 </template>

@@ -16,7 +16,6 @@ export default antfu(
         settings: {
             tailwindcss: {
                 config: "tailwind.config.ts",
-
                 cssFiles: ["resources/css/app.css"],
             },
         },
@@ -24,7 +23,6 @@ export default antfu(
     {
         ignores: [
             "resources/js/types/global.d.ts",
-            "resources/js/types/svg.d.ts",
             "node_modules",
             "package-lock.json",
         ],

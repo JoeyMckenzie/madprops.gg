@@ -1,0 +1,26 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+pre-push:
+  commands:
+    packages-audit:
+      tags: frontend security
+      run: npm audit
+    vendors-audit:
+      tags: backend security
+      run: composer audit
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{js,json,ts,vue}"
+      run: npm run lint {staged_files}
+      stage_fixed: true
+    phpstan:
+      tags: backend style
+      glob: "*.php"
+      run: composer run lint {staged_files}
+      stage_fixed: true

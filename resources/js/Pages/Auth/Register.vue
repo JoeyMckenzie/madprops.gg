@@ -5,7 +5,6 @@ import Input from "@/components/ui/input/Input.vue";
 import Label from "@/components/ui/label/Label.vue";
 import GuestLayout from "@/layouts/GuestLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
-import logo from "@svg/logoipsum-332.svg";
 
 const form = useForm({
     first_name: "",
@@ -32,7 +31,7 @@ function submit() {
         >
             <div class="flex items-center justify-center px-4 py-12 lg:px-0">
                 <div class="mx-auto grid w-[350px] gap-6">
-                    <img :src="logo" class="mx-auto size-16">
+                    <img alt="app logo" class="mx-auto size-16" src="/svg/logoipsum-332.svg">
 
                     <div class="grid gap-2 text-center">
                         <h1 class="text-3xl font-bold">
@@ -50,9 +49,9 @@ function submit() {
                                 <Input
                                     id="first_name"
                                     v-model="form.first_name"
-                                    type="text"
                                     placeholder="Richard"
                                     required
+                                    type="text"
                                 />
                                 <InputError :message="form.errors.first_name" />
                             </div>
@@ -62,9 +61,9 @@ function submit() {
                                 <Input
                                     id="last_name"
                                     v-model="form.last_name"
-                                    type="text"
                                     placeholder="Hendricks"
                                     required
+                                    type="text"
                                 />
                                 <InputError :message="form.errors.last_name" />
                             </div>
@@ -75,9 +74,9 @@ function submit() {
                             <Input
                                 id="email"
                                 v-model="form.email"
-                                type="email"
                                 placeholder="richard.hendricks@piedpiper.com"
                                 required
+                                type="email"
                             />
                             <InputError :message="form.errors.email" />
                         </div>
@@ -86,8 +85,8 @@ function submit() {
                             <Input
                                 id="password"
                                 v-model="form.password"
-                                type="password"
                                 required
+                                type="password"
                             />
                             <InputError :message="form.errors.password" />
                         </div>
@@ -96,14 +95,14 @@ function submit() {
                             <Input
                                 id="password_confirmation"
                                 v-model="form.password_confirmation"
-                                type="password"
                                 required
+                                type="password"
                             />
                             <InputError
                                 :message="form.errors.password_confirmation"
                             />
                         </div>
-                        <Button type="submit" class="w-full">
+                        <Button class="w-full" type="submit">
                             Sign up
                         </Button>
                     </div>
@@ -117,11 +116,11 @@ function submit() {
             </div>
             <div class="hidden bg-muted lg:block">
                 <img
-                    src="https://www.shadcn-vue.com/placeholder.svg"
                     alt="Image"
-                    width="1920"
-                    height="1080"
                     class="size-full object-cover dark:brightness-[0.2] dark:grayscale"
+                    height="1080"
+                    src="https://www.shadcn-vue.com/placeholder.svg"
+                    width="1920"
                 >
             </div>
         </form>
