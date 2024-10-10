@@ -14,16 +14,20 @@ pre-push:
     tests:
       tags: backend type checks
       run: composer run test:types
+    phpstan:
+      tags: backend phpstan checks
+      run: composer run lint
 
 pre-commit:
   parallel: true
   commands:
     eslint:
+      tags: frontend styles
       glob: "*.{js,json,ts,vue}"
       run: npm run lint {staged_files}
       stage_fixed: true
-    phpstan:
-      tags: backend style
+    pint:
+      tags: backend styles
       glob: "*.php"
-      run: composer run lint {staged_files}
+      run: composer run fmt {staged_files}
       stage_fixed: true
