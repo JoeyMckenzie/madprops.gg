@@ -4,23 +4,24 @@
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc && vite build && vite build --ssr",
+        "ssr:start": "php artisan inertia:start-ssr",
+        "ssr:stop": "php artisan inertia:stop-ssr",
         "lint": "eslint --fix --no-warn-ignored",
         "lint:all": "eslint --fix --no-warn-ignored resources/js ./*.{js,ts,json,yml}"
     },
     "dependencies": {
         "@radix-icons/vue": "^1.0.0",
-        "@vee-validate/zod": "^4.13.2",
         "@vueuse/core": "^11.1.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "radix-vue": "^1.9.6",
         "tailwind-merge": "^2.5.3",
         "tailwindcss-animate": "^1.0.7",
-        "vee-validate": "^4.13.2",
         "zod": "^3.23.8"
     },
     "devDependencies": {
         "@antfu/eslint-config": "^3.7.3",
+        "@iconify/vue": "^4.1.2",
         "@inertiajs/vue3": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
         "@types/node": "^22.7.4",
@@ -32,16 +33,11 @@
         "eslint-plugin-tailwindcss": "^3.17.4",
         "laravel-vite-plugin": "^1.0",
         "lefthook": "^1.7.18",
-        "lint-staged": "^15.2.10",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.2.1",
         "typescript": "^5.5.3",
         "vite": "^5.0",
         "vue": "^3.4.0",
         "vue-tsc": "^2.0.24"
-    },
-    "lint-staged": {
-        "**/*.{js,ts,json,vue}": "npm run lint",
-        "**/*.php": "composer run fmt"
     }
 }

@@ -22,7 +22,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "@": resolve(__dirname, "resources/js"),
-            "@svg": resolve(__dirname, "resources/svg"),
+            "ziggy-js": resolve(__dirname, "vendor/tightenco/ziggy"),
         },
     },
 });
