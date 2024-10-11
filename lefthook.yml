@@ -31,3 +31,8 @@ pre-commit:
       glob: "*.php"
       run: composer run fmt {staged_files}
       stage_fixed: true
+    rector:
+      tags: rector run
+      glob: "*.php"
+      run: composer run rector {staged_files}
+      stage_fixed: true
