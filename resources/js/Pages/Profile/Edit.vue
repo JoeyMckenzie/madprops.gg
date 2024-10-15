@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import DeleteUserForm from "./partials/DeleteUserForm.vue";
@@ -24,9 +24,9 @@ defineProps<{
         </template>
 
         <div class="py-12">
-            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
+            <div class="max-w-7xl space-y-6 sm:px-6 lg:px-8">
                 <div
-                    class="bg-white p-4 shadow dark:bg-gray-800 sm:rounded-lg sm:p-8"
+                    class="p-4 shadow sm:rounded-lg sm:p-8"
                 >
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"

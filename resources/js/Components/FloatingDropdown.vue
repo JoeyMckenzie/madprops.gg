@@ -9,6 +9,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icon } from "@iconify/vue";
+import { Link } from "@inertiajs/vue3";
 import { useColorMode } from "@vueuse/core";
 
 const mode = useColorMode();
@@ -22,7 +23,7 @@ const mode = useColorMode();
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-            <DropdownMenuLabel class="space-x-1">
+            <DropdownMenuLabel class="flex flex-row justify-center space-x-1">
                 <Button
                     :variant="mode === 'light' ? 'secondary' : 'ghost'"
                     type="button"
@@ -37,19 +38,22 @@ const mode = useColorMode();
                 >
                     <Icon icon="radix-icons:moon" />
                 </Button>
-                <Button
-                    :variant="mode === 'auto' ? 'secondary' : 'ghost'"
-                    type="button"
-                    @click="mode = 'auto'"
-                >
-                    <Icon icon="solar:laptop-broken" />
-                </Button>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <Link :href="route('profile.edit')" class="w-full">
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+            </Link>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>GitHub</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <Link
+                :href="route('logout')"
+                as="button"
+                class="w-full"
+                method="post"
+            >
+                <DropdownMenuItem>Sign out</DropdownMenuItem>
+            </Link>
         </DropdownMenuContent>
     </DropdownMenu>
 </template>
