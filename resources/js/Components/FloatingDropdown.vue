@@ -40,11 +40,17 @@ const mode = useColorMode();
                 </Button>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link :href="route('profile.edit')" class="w-full">
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem>
+                <Link :href="route('profile.edit')" class="w-full">
+                    Profile
+                </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>GitHub</DropdownMenuItem>
+            <DropdownMenuItem>
+                <a href="https://github.com/joeymckenzie/madprops.gg" rel="noreferrer">
+                    GitHub
+                </a>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <Link
                 :href="route('logout')"
