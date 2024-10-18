@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Utilities\ApplicationVersion;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Override;
@@ -44,6 +45,7 @@ final class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'version' => ApplicationVersion::getVersion(),
         ];
     }
 }

@@ -17,13 +17,13 @@ const mobileMenuOpen = ref(false);
     <header class="bg-white">
         <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8">
             <div class="flex lg:flex-1">
-                <a class="-m-1.5 p-1.5" href="#">
+                <Link :href="route('home')" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
                     <img
                         alt="" class="h-8 w-auto"
                         src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
                     >
-                </a>
+                </Link>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <a

@@ -77,29 +77,31 @@ const recommendations = ref(
 
                 <div class="mt-12 space-y-6">
                     <Card v-for="(recommendation, index) in recommendations" :key="`recommendation-${index}`">
-                        <CardContent class="flex items-start space-x-4 p-6">
-                            <Avatar>
-                                <AvatarImage :alt="recommendation.username" :src="recommendation.avatarUrl" />
-                                <AvatarFallback>{{ recommendation.username.charAt(0) }}</AvatarFallback>
-                            </Avatar>
-                            <div>
-                                <p class="font-semibold text-muted-foreground">
-                                    {{ recommendation.fullName }}
-                                </p>
-                                <p class="text-sm text-gray-500">
-                                    @
-                                    <Link :href="route('profile.edit')" class="-ml-1 hover:underline">
-                                        {{ recommendation.username }}
-                                    </Link>
-                                </p>
-                                <p class="mt-1 text-sm text-muted-foreground">
-                                    {{ user.jobTitle }} at {{ user.company }}
-                                </p>
-                                <Separator class="my-2" />
-                                <p class="mt-2 text-muted-foreground">
-                                    &quot;{{ recommendation.message }}&quot;
-                                </p>
+                        <CardContent class="flex flex-col items-start p-6">
+                            <div class="flex flex-row gap-x-2">
+                                <Avatar class="size-16">
+                                    <AvatarImage :alt="recommendation.username" :src="recommendation.avatarUrl" />
+                                    <AvatarFallback>{{ recommendation.username.charAt(0) }}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <p class="font-semibold text-muted-foreground">
+                                        {{ recommendation.fullName }}
+                                    </p>
+                                    <p class="text-sm text-gray-500">
+                                        @
+                                        <Link :href="route('profile.edit')" class="-ml-1 hover:underline">
+                                            {{ recommendation.username }}
+                                        </Link>
+                                    </p>
+                                    <p class="mt-1 text-sm text-muted-foreground">
+                                        {{ user.jobTitle }} at {{ user.company }}
+                                    </p>
+                                </div>
                             </div>
+                            <Separator class="my-2" />
+                            <p class="mt-2 text-muted-foreground">
+                                &quot;{{ recommendation.message }}&quot;
+                            </p>
                         </CardContent>
                     </Card>
                 </div>

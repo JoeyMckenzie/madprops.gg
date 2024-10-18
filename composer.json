@@ -1,11 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "joeymckenzie/madprops.gg",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Giving people the props they deserve.",
     "keywords": [
-        "laravel",
-        "framework"
+        "recommendations"
     ],
+    "version": "0.1.0",
     "license": "MIT",
     "require": {
         "php": "^8.3",
