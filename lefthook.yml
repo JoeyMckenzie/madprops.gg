@@ -17,6 +17,9 @@ pre-push:
     phpstan:
       tags: backend phpstan checks
       run: composer run lint
+    eslint:
+      tags: backend phpstan checks
+      run: npm run lint
 
 pre-commit:
   parallel: true
