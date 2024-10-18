@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import InputError from "@/components/InputError.vue";
 import Button from "@/components/ui/button/Button.vue";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import Input from "@/components/ui/input/Input.vue";
 import Label from "@/components/ui/label/Label.vue";
 import GuestLayout from "@/layouts/GuestLayout.vue";
@@ -24,41 +25,46 @@ function submit() {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email
-            address and we will email you a password reset link that will allow
-            you to choose a new one.
-        </div>
-
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <Label for="email">Email</Label>
+        <Card>
+            <CardHeader>
+                <CardDescription>
+                    Forgot your password? No problem. Just let us know your email
+                    address and we will email you a password reset link that will allow
+                    you to choose a new one.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <form @submit.prevent="submit">
+                    <div>
+                        <Label for="email">Email</Label>
 
-                <Input
-                    id="email"
-                    v-model="form.email"
-                    autocomplete="username"
-                    autofocus
-                    class="mt-1 block w-full"
-                    required
-                    type="email"
-                />
+                        <Input
+                            id="email"
+                            v-model="form.email"
+                            autocomplete="username"
+                            autofocus
+                            class="mt-1 block w-full"
+                            required
+                            type="email"
+                        />
 
-                <InputError :message="form.errors.email" class="mt-2" />
-            </div>
+                        <InputError :message="form.errors.email" class="mt-2" />
+                    </div>
 
-            <div class="mt-4 flex items-center justify-end">
-                <Button
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Email Password Reset Link
-                </Button>
-            </div>
-        </form>
+                    <div class="mt-4 flex items-center justify-end">
+                        <Button
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
+                            Email Password Reset Link
+                        </Button>
+                    </div>
+                </form>
+            </CardContent>
+        </Card>
     </GuestLayout>
 </template>
