@@ -1,10 +1,11 @@
-declare namespace App.ValueObjects {
-    export interface UserProp {
-        username: string;
+declare namespace App.Data {
+    export interface UserData {
         fullName: string;
+        initials: string;
+        username: string;
+        avatar: string;
         jobTitle: string;
-        company: string;
-        avatarUrl: string;
-        message: string | null;
+        companyName: string;
+        bio: string;
     }
 }

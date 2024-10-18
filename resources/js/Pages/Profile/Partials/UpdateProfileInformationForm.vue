@@ -14,7 +14,9 @@ defineProps<{
 const user = usePage().props.auth.user;
 
 const form = useForm({
-    name: user.name,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    username: user.username,
     email: user.email,
 });
 </script>
@@ -35,17 +37,43 @@ const form = useForm({
                     class="grid gap-6"
                     @submit.prevent="form.patch(route('profile.update'))"
                 >
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="grid gap-2">
+                            <Label for="first_name">First name</Label>
+                            <Input
+                                id="first_name"
+                                v-model="form.first_name"
+                                autocomplete="first_name"
+                                autofocus
+                                required
+                                type="text"
+                            />
+                            <InputError :message="form.errors.first_name" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="last_name">Last name</Label>
+                            <Input
+                                id="last_name"
+                                v-model="form.last_name"
+                                autocomplete="last_name"
+                                autofocus
+                                required
+                                type="text"
+                            />
+                            <InputError :message="form.errors.last_name" />
+                        </div>
+                    </div>
+
                     <div class="grid gap-2">
-                        <Label for="name">Name</Label>
+                        <Label for="username">Username</Label>
                         <Input
-                            id="name"
-                            v-model="form.name"
-                            autocomplete="name"
-                            autofocus
+                            id="username"
+                            v-model="form.username"
+                            autocomplete="username"
                             required
                             type="text"
                         />
-                        <InputError :message="form.errors.name" />
+                        <InputError :message="form.errors.username" />
                     </div>
 
                     <div class="grid gap-2">
@@ -57,7 +85,7 @@ const form = useForm({
                             required
                             type="email"
                         />
-                        <InputError :message="form.errors.email" class="mt-2" />
+                        <InputError :message="form.errors.email" />
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">

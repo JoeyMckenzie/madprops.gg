@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Data\UserData;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,9 +17,23 @@ use Inertia\Response;
 
 final class ProfileController extends Controller
 {
-    public function show(Request $request, string $slug): Response
+    public function show(string $username): Response
     {
-        return Inertia::render('profile/Show');
+        $userWithProps = User::select([
+            'first_name',
+            'last_name',
+            'job_title',
+            'company_name',
+            'username',
+            'bio',
+            'avatar',
+        ])
+            ->where('username', $username)
+            ->firstOrFail();
+
+        return Inertia::render('profile/Show', [
+            'user' => UserData::from($userWithProps),
+        ]);
     }
 
     /**

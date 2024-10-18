@@ -7,43 +7,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Database\Factories\UserFactory;
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
 use Override;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $email
- * @property Carbon|null $email_verified_at
- * @property mixed $password
- * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- *
- * @method static UserFactory factory($count = null, $state = [])
- * @method static Builder|User newModelQuery()
- * @method static Builder|User newQuery()
- * @method static Builder|User query()
- * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User whereEmailVerifiedAt($value)
- * @method static Builder|User whereId($value)
- * @method static Builder|User whereName($value)
- * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereRememberToken($value)
- * @method static Builder|User whereUpdatedAt($value)
- *
- * @mixin Eloquent
- */
 final class User extends Authenticatable
 {
     /**
@@ -61,6 +31,15 @@ final class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'username',
+        'job_title',
+        'company_name',
+        'bio',
+    ];
+
+    protected $appends = [
+        'full_name',
+        'initials',
     ];
 
     /**
@@ -72,6 +51,37 @@ final class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * @return HasMany<Prop>
+     */
+    public function props(): HasMany
+    {
+        return $this->hasMany(Prop::class);
+    }
+
+    /**
+     * @return Attribute<string, string>
+     */
+    protected function fullName(): Attribute
+    {
+        return new Attribute(
+            get: fn (): string => "$this->first_name $this->last_name"
+        );
+    }
+
+    /**
+     * @return Attribute<string, string>
+     */
+    protected function initials(): Attribute
+    {
+        $firstNameInitial = substr($this->first_name, 0, 1);
+        $lastNameInitial = substr($this->last_name, 0, 1);
+
+        return new Attribute(
+            get: fn (): string => $firstNameInitial.$lastNameInitial
+        );
+    }
 
     /**
      * Get the attributes that should be cast.

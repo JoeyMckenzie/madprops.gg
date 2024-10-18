@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import type { Recommendation } from "@/pages/profile/Show.vue";
 import PropCard from "@/components/prop/PropCard.vue";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 defineProps<{
-    recommendations: App.ValueObjects.UserProp[];
-    user: App.ValueObjects.UserProp;
+    recommendations: Recommendation[];
+    user: App.Data.UserData;
 }>();
 </script>
 

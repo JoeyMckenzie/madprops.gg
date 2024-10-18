@@ -3,18 +3,10 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', fn () => Inertia::render('Welcome', [
-    'canLogin' => Route::has('login'),
-    'canRegister' => Route::has('register'),
-    'laravelVersion' => Application::VERSION,
-    'phpVersion' => PHP_VERSION,
-]))->name('home');
-
-Route::get('/{username}', fn () => Inertia::render('profile/Show'))->name('test');
+Route::get('/@{username}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 

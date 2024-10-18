@@ -6,7 +6,7 @@
         "build": "vue-tsc && vite build && vite build --ssr",
         "ssr:start": "php artisan inertia:start-ssr",
         "ssr:stop": "php artisan inertia:stop-ssr",
-        "lint": "eslint --fix --no-warn-ignored",
+        "lint": "eslint --fix --no-warn-ignored resources/js",
         "lint:all": "eslint --fix --no-warn-ignored resources/js ./*.{js,ts,json,yml}"
     },
     "dependencies": {

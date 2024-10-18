@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,6 @@ final class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-
         return Inertia::render('auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
@@ -36,7 +36,10 @@ final class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        /** @var User $user */
+        $user = $request->user();
+
+        return redirect()->intended(route('profile.show', $user->username, absolute: false));
     }
 
     /**
@@ -50,6 +53,6 @@ final class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

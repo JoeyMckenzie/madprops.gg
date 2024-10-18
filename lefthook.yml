@@ -4,38 +4,35 @@
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
 pre-push:
-  commands:
-    packages-audit:
-      tags: frontend security
-      run: npm audit
-    vendors-audit:
-      tags: backend security
-      run: composer audit
-    tests:
-      tags: backend type checks
-      run: composer run test:types
-    phpstan:
-      tags: backend phpstan checks
-      run: composer run lint
-    eslint:
-      tags: backend phpstan checks
-      run: npm run lint
+    commands:
+        packages-audit:
+            tags: frontend security
+            run: npm audit
+        vendors-audit:
+            tags: backend security
+            run: composer audit
+        tests:
+            tags: backend type checks
+            run: composer run test:types
+        phpstan:
+            tags: backend phpstan checks
+            run: composer run lint
 
 pre-commit:
-  parallel: true
-  commands:
-    eslint:
-      tags: frontend styles
-      glob: "*.{js,json,ts,vue}"
-      run: npm run lint {staged_files}
-      stage_fixed: true
-    pint:
-      tags: backend styles
-      glob: "*.php"
-      run: composer run fmt {staged_files}
-      stage_fixed: true
-    rector:
-      tags: rector run
-      glob: "*.php"
-      run: composer run rector {staged_files}
-      stage_fixed: true
+    parallel: true
+    commands:
+        eslint:
+            tags: frontend styles
+            glob: "*.{js,json,ts,vue}"
+            run: npm run lint {staged_files}
+            stage_fixed: true
+        pint:
+            tags: backend styles
+            glob: "*.php"
+            run: composer run fmt {staged_files}
+            stage_fixed: true
+        rector:
+            tags: rector run
+            glob: "*.php"
+            run: composer run rector {staged_files}
+            stage_fixed: true

@@ -15,8 +15,7 @@ defineProps<{
 const user = usePage().props.auth.user;
 
 const form = useForm({
-    name: user.name,
-    email: user.email,
+    avatar: user.avatar,
 });
 </script>
 
@@ -48,7 +47,7 @@ const form = useForm({
                 <form @submit.prevent="form.patch(route('profile.update'))">
                     <div class="relative mt-4 inline-flex">
                         <Avatar class="size-24 cursor-pointer">
-                            <AvatarImage alt="User avatar" src="https://avatar.iran.liara.run/public/boy" />
+                            <AvatarImage :alt="user.username" :src="user.avatar" />
                             <AvatarFallback>User</AvatarFallback>
                         </Avatar>
                         <Label
@@ -63,7 +62,7 @@ const form = useForm({
                             class="hidden"
                             type="file"
                         />
-                        <InputError :message="form.errors.name" />
+                        <InputError :message="form.errors.avatar" />
                     </div>
                 </form>
             </CardContent>
