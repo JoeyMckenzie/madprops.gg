@@ -14,6 +14,8 @@ Route::get('/', fn () => Inertia::render('Welcome', [
     'phpVersion' => PHP_VERSION,
 ]))->name('home');
 
+Route::get('/{username}', fn () => Inertia::render('profile/Show'))->name('test');
+
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function (): void {

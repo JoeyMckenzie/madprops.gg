@@ -5,13 +5,6 @@ import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref } from "vue";
 
-defineProps<{
-    canLogin?: boolean;
-    canRegister?: boolean;
-    laravelVersion: string;
-    phpVersion: string;
-}>();
-
 const user = ref<App.ValueObjects.UserProp>({
     username: "johndoe",
     fullName: "John Doe",

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import ApplicationLogo from "@/components/ApplicationLogo.vue";
-import FloatingDropdown from "@/components/FloatingDropdown.vue";
+import DropdownMenu from "@/components/DropdownMenu.vue";
 import { Link } from "@inertiajs/vue3";
 </script>
 
@@ -25,7 +25,7 @@ import { Link } from "@inertiajs/vue3";
                         <div class="ms-6 flex items-center">
                             <!-- Settings Dropdown -->
                             <div class="relative ms-3">
-                                <FloatingDropdown />
+                                <DropdownMenu />
                             </div>
                         </div>
                     </div>

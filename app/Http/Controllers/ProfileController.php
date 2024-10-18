@@ -16,6 +16,11 @@ use Inertia\Response;
 
 final class ProfileController extends Controller
 {
+    public function show(Request $request, string $slug): Response
+    {
+        return Inertia::render('profile/Show');
+    }
+
     /**
      * Display the user's profile form.
      */
