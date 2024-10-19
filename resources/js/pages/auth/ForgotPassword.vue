@@ -25,7 +25,7 @@ function submit() {
     <GuestLayout>
         <Head title="Forgot Password" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
@@ -39,20 +39,17 @@ function submit() {
             </CardHeader>
             <CardContent>
                 <form @submit.prevent="submit">
-                    <div>
+                    <div class="grid gap-2">
                         <Label for="email">Email</Label>
-
                         <Input
                             id="email"
                             v-model="form.email"
                             autocomplete="username"
                             autofocus
-                            class="mt-1 block w-full"
                             required
                             type="email"
                         />
-
-                        <InputError :message="form.errors.email" class="mt-2" />
+                        <InputError :message="form.errors.email" />
                     </div>
 
                     <div class="mt-4 flex items-center justify-end">
