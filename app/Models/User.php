@@ -53,7 +53,7 @@ final class User extends Authenticatable
     ];
 
     /**
-     * @return HasMany<Prop>
+     * @return HasMany<Prop, covariant $this>
      */
     public function props(): HasMany
     {

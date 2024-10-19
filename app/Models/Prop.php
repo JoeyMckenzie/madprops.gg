@@ -23,7 +23,7 @@ final class Prop extends Model
     ];
 
     /**
-     * @return BelongsTo<User, Prop>
+     * @return BelongsTo<User, covariant $this>
      */
     public function user(): BelongsTo
     {
@@ -31,7 +31,7 @@ final class Prop extends Model
     }
 
     /**
-     * @return BelongsTo<User, Prop>
+     * @return BelongsTo<User, covariant $this>
      */
     public function giver(): BelongsTo
     {
@@ -39,7 +39,7 @@ final class Prop extends Model
     }
 
     /**
-     * @return BelongsTo<User, Prop>
+     * @return BelongsTo<User, covariant Prop>
      */
     public function receiver(): BelongsTo
     {
