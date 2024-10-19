@@ -45,7 +45,7 @@ final class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'version' => ApplicationVersion::getVersion(),
+            'version' => ApplicationVersion::getComposerVersion(),
         ];
     }
 }

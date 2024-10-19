@@ -49,9 +49,8 @@ function submit() {
                                 <Input
                                     id="first_name"
                                     v-model="form.first_name"
-                                    autocomplete="first_name"
+                                    autocomplete="first-name"
                                     autofocus
-                                    placeholder="richard.hendrickson@email.com"
                                     required
                                     type="text"
                                 />
@@ -65,24 +64,31 @@ function submit() {
                                 <Input
                                     id="last_name"
                                     v-model="form.last_name"
-                                    autocomplete="last_name"
+                                    autocomplete="last-name"
                                     autofocus
                                     required
                                     type="text"
                                 />
-                                <InputError
-                                    :message="form.errors.last_name"
-                                    class="mt-2"
-                                />
+                                <InputError :message="form.errors.last_name" />
                             </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="username">Username</Label>
+                            <Input
+                                id="username"
+                                v-model="form.username"
+                                autocomplete="username"
+                                required
+                                type="text"
+                            />
+                            <InputError :message="form.errors.username" />
                         </div>
                         <div class="grid gap-2">
                             <Label for="email">Email</Label>
                             <Input
                                 id="email"
                                 v-model="form.email"
-                                autocomplete="username"
-                                placeholder="richard.hendrickson@email.com"
+                                autocomplete="email"
                                 required
                                 type="email"
                             />

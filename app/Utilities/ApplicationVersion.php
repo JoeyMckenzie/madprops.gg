@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Utilities;
 
-use Cache;
-use Log;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 final class ApplicationVersion
 {
@@ -13,7 +13,7 @@ final class ApplicationVersion
 
     private const string DEFAULT_VERSION = '1.0.0';
 
-    public static function getVersion(): string
+    public static function getComposerVersion(): string
     {
         if (Cache::has(self::CACHE_KEY)) {
             /** @var string $version */
