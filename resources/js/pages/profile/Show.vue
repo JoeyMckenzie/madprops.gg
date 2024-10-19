@@ -15,6 +15,7 @@ const recommendations = ref<Recommendation[]>(
     [
         {
             username: "janedoe",
+            handle: "@janedoe",
             bio: "asdfasdfasf",
             initials: "JD",
             fullName: "Jane Doe",
@@ -25,6 +26,7 @@ const recommendations = ref<Recommendation[]>(
         },
         {
             username: "janedoe",
+            handle: "@janedoe",
             bio: "asdfasdfasf",
             initials: "JD",
             fullName: "Jane Doe",
@@ -35,6 +37,7 @@ const recommendations = ref<Recommendation[]>(
         },
         {
             username: "janedoe",
+            handle: "@janedoe",
             bio: "asdfasdfasf",
             initials: "JD",
             fullName: "Jane Doe",
