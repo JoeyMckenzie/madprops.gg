@@ -83,7 +83,7 @@
         "check": [
             "@lint",
             "@fmt",
-            "@test"
+            "@test:types"
         ],
         "check:test": [
             "@check",
