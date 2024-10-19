@@ -9,18 +9,18 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest ]
-        php: [ 8.3 ]
-        npm: [ 10 ]
+        php: [ 8.2, 8.3 ]
+        node: [ 20 ]
         dependency-version: [ prefer-stable ]
 
-    name: php ${{ matrix.php }} | npm ${{ matrix.npm }} | os ${{ matrix.os }} | Dependency Resolution ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} | Node ${{ matrix.node }} | ${{ matrix.os }} | ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Cache dependencies
-        uses: actions/cache@v1
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache/files
           key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -29,17 +29,19 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
 
-      - name: Setup node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: latest
+          node-version: ${{ matrix.node }}
 
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
 
-      - name: Install node dependencies
-        run: npm install --save-dev
+      - name: Install Node.js dependencies
+        run: npm ci
 
       - name: Rector Cache
         uses: actions/cache@v3
@@ -48,16 +50,14 @@ jobs:
           key: ${{ runner.os }}-rector-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-rector-
 
-      - run: mkdir -p /tmp/rector
+      - name: Create Rector cache directory
+        run: mkdir -p /tmp/rector
 
       - name: Rector Dry Run
         run: composer run rector:cache
 
       - name: Copy .env
-        run: cp .env.ci .env
-
-      - name: Build assets
-        run: npm run build
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Generate key
         run: php artisan key:generate
@@ -66,7 +66,19 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
 
       - name: Run migrations
-        run: php artisan migrate --force --seed
+        run: php artisan migrate --force
 
-      - name: Run tests
-        run: composer run check
+      - name: PHP Linting
+        run: composer run lint
+
+      - name: Build assets
+        run: npm run build
+
+      - name: JavaScript Linting
+        run: npm run lint
+
+      - name: Run PHP tests
+        run: composer run test
+
+      - name: Run JavaScript tests
+        run: npm test
