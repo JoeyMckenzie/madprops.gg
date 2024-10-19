@@ -53,9 +53,6 @@ jobs:
       - name: Rector Dry Run
         run: composer run rector:cache
 
-      - name: Run CI checks
-        run: composer check
-
       - name: Copy .env
         run: cp .env.ci .env
 
@@ -72,4 +69,4 @@ jobs:
         run: php artisan migrate --force --seed
 
       - name: Run tests
-        run: composer run test:integration
+        run: composer run check

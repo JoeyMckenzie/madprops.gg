@@ -83,11 +83,7 @@
         "check": [
             "@lint",
             "@fmt",
-            "@test:types"
-        ],
-        "check:test": [
-            "@check",
-            "@test:integration"
+            "@test"
         ],
         "helper:generate": "php artisan ide-helper:generate",
         "helper:models": "php artisan ide-helper:models",
