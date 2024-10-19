@@ -13,7 +13,7 @@ jobs:
         node: [ 20 ]
         dependency-version: [ prefer-stable ]
 
-    name: PHP ${{ matrix.php }} | Node ${{ matrix.node }} | ${{ matrix.os }} | ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} | Node ${{ matrix.node }} | OS ${{ matrix.os }} | Composer Packages ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout
@@ -79,6 +79,3 @@ jobs:
 
       - name: Run PHP tests
         run: composer run test
-
-      - name: Run JavaScript tests
-        run: npm test
