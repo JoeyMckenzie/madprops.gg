@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use function redirect;
 
-final class ProfileSocialsController
+final class ProfileDisplaySocialsController
 {
     public function update(Request $request): RedirectResponse
     {
@@ -18,10 +18,7 @@ final class ProfileSocialsController
         }
 
         $validated = $request->validate([
-            'x_username' => 'nullable|max:255|',
-            'linkedin_username' => 'nullable|max:255',
-            'github_username' => 'nullable|max:255',
-            'pinkary_username' => 'nullable|max:255',
+            'display_socials' => 'required|boolean',
         ]);
 
         $request->user()->fill($validated);

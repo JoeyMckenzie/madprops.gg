@@ -26,7 +26,7 @@ const socialsForm = useForm({
 function toggleDisplaySocialsFlag() {
     displaySocials.value = !displaySocials.value;
     displaySocialsForm.display_socials = displaySocials.value;
-    displaySocialsForm.patch(route("profile.socials.update"), { preserveScroll: true });
+    displaySocialsForm.patch(route("profile.socials.display.update"), { preserveScroll: true });
 }
 </script>
 
@@ -57,7 +57,7 @@ function toggleDisplaySocialsFlag() {
             <CardContent class="grid gap-4">
                 <form
                     class="grid gap-6"
-                    @submit.prevent="socialsForm.patch(route('profile.update'))"
+                    @submit.prevent="socialsForm.patch(route('profile.socials.update'), { preserveScroll: true })"
                 >
                     <div class="grid gap-2">
                         <div class="relative items-center">

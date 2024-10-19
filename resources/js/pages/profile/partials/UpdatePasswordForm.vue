@@ -50,7 +50,7 @@ function updatePassword() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form class="mt-6 space-y-6" @submit.prevent="updatePassword">
+                    <form class="grid gap-6" @submit.prevent="updatePassword">
                         <div class="grid gap-2">
                             <Label for="current_password">Current Password</Label>
 
