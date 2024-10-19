@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import ProfileHeader from "@/components/profile/ProfileHeader.vue";
-import PropCardBoard from "@/components/prop/PropCardBoard.vue";
+import PropCardBoard from "@/components/props/PropCardBoard.vue";
 import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref } from "vue";

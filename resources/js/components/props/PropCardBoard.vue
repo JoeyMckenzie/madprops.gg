@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Recommendation } from "@/pages/profile/Show.vue";
-import PropCard from "@/components/prop/PropCard.vue";
+import PropCard from "@/components/props/PropCard.vue";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
