@@ -39,7 +39,7 @@ jobs:
         run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
 
       - name: Install node dependencies
-        run: npm ci
+        run: npm install
 
       - name: Rector Cache
         uses: actions/cache@v3
