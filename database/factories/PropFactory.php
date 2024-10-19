@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Models\Prop;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 
 /**
  * @extends Factory<Prop>
@@ -17,7 +18,7 @@ final class PropFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    #[\Override]
+    #[Override]
     public function definition(): array
     {
         return [
