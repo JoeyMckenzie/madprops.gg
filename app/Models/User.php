@@ -32,6 +32,11 @@ final class User extends Authenticatable
         'email',
         'password',
         'username',
+        'x_username',
+        'github_username',
+        'linkedin_username',
+        'pinkary_username',
+        'display_socials',
         'job_title',
         'company_name',
         'bio',
@@ -40,6 +45,7 @@ final class User extends Authenticatable
     protected $appends = [
         'full_name',
         'initials',
+        'handle',
     ];
 
     /**
@@ -73,6 +79,16 @@ final class User extends Authenticatable
     /**
      * @return Attribute<string, string>
      */
+    protected function handle(): Attribute
+    {
+        return new Attribute(
+            get: fn (): string => "@$this->username"
+        );
+    }
+
+    /**
+     * @return Attribute<string, string>
+     */
     protected function initials(): Attribute
     {
         $firstNameInitial = substr($this->first_name, 0, 1);
@@ -94,6 +110,7 @@ final class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'display_socials' => 'boolean',
         ];
     }
 }

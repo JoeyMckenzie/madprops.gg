@@ -93,7 +93,8 @@
             "@helper:models",
             "@helper:meta"
         ],
-        "tail": "php artisan pail -vv"
+        "tail": "php artisan pail -vv",
+        "types": "php artisan typescript:transform --format"
     },
     "extra": {
         "laravel": {

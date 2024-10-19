@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
+import UpdateSocialsForm from "@/pages/profile/partials/UpdateSocialsForm.vue";
 import UpdateUserAvatarForm from "@/pages/profile/partials/UpdateUserAvatarForm.vue";
 import { Head } from "@inertiajs/vue3";
 import DeleteUserForm from "./partials/DeleteUserForm.vue";
@@ -25,6 +26,7 @@ defineProps<{
                     class="max-w-xl"
                 />
                 <UpdatePasswordForm class="max-w-xl" />
+                <UpdateSocialsForm class="max-w-xl" />
                 <DeleteUserForm class="max-w-xl" />
             </div>
         </div>

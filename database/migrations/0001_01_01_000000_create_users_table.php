@@ -22,10 +22,11 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('job_title')->nullable();
             $table->string('company_name')->nullable();
-            $table->string('x_link')->nullable();
-            $table->string('linkedin_link')->nullable();
-            $table->string('github_link')->nullable();
-            $table->string('pinkary_link')->nullable();
+            $table->boolean('display_socials')->default(false);
+            $table->string('x_username')->nullable();
+            $table->string('linkedin_username')->nullable();
+            $table->string('github_username')->nullable();
+            $table->string('pinkary_username')->nullable();
             $table->string('bio', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

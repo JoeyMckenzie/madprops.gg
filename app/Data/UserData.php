@@ -19,6 +19,8 @@ final class UserData extends Data
 
     public string $username;
 
+    public string $handle;
+
     public string $avatar;
 
     public string $jobTitle;

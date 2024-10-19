@@ -11,6 +11,11 @@ export interface User {
     username: string;
     email: string;
     email_verified_at?: string;
+    display_socials: boolean;
+    x_username?: string;
+    linkedin_username?: string;
+    github_username?: string;
+    pinkary_username?: string;
 }
 
 export type PageProps<
