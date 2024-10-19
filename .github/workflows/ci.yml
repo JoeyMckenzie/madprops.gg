@@ -53,9 +53,6 @@ jobs:
       - name: Rector Dry Run
         run: composer run rector:cache
 
-      - name: Setup just
-        uses: extractions/setup-just@v2
-
       - name: Run CI checks
         run: composer check
 
