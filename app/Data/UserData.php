@@ -28,4 +28,14 @@ final class UserData extends Data
     public string $companyName;
 
     public string $bio;
+
+    public string $displaySocials;
+
+    public string $linkedinUsername;
+
+    public string $xUsername;
+
+    public string $githubUsername;
+
+    public string $pinkaryUsername;
 }

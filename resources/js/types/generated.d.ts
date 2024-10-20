@@ -8,5 +8,10 @@ declare namespace App.Data {
         jobTitle: string;
         companyName: string;
         bio: string;
+        displaySocials: string;
+        linkedinUsername: string;
+        xUsername: string;
+        githubUsername: string;
+        pinkaryUsername: string;
     }
 }

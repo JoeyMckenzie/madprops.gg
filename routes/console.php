@@ -2,11 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\PerformDatabaseBackupCommand;
 
-// @phpstan-ignore-next-line
-Artisan::command('inspire', function (): void {
-    // @phpstan-ignore-next-line
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+Schedule::command(PerformDatabaseBackupCommand::class)->everySixHours();

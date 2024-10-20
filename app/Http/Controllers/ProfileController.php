@@ -19,7 +19,7 @@ final class ProfileController extends Controller
 {
     public function show(string $username): Response
     {
-        $userWithProps = User::select([
+        $user = User::select([
             'first_name',
             'last_name',
             'job_title',
@@ -27,12 +27,16 @@ final class ProfileController extends Controller
             'username',
             'bio',
             'avatar',
+            'display_socials',
+            'pinkary_username',
+            'github_username',
+            'linkedin_username',
+            'x_username',
         ])
-            ->where('username', $username)
-            ->firstOrFail();
+            ->firstWhere('username', $username);
 
         return Inertia::render('profile/Show', [
-            'user' => UserData::from($userWithProps),
+            'user' => UserData::from($user),
         ]);
     }
 

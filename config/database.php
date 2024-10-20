@@ -172,4 +172,8 @@ return [
 
     ],
 
+    'sqlite' => [
+        'backup_copies' => env('SQLITE_BACKUP_COPIES', 4),
+    ],
+
 ];

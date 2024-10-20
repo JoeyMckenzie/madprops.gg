@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ProfileSocials from "@/pages/profile/partials/ProfileSocials.vue";
 import { Link } from "@inertiajs/vue3";
 
 defineProps<{
@@ -29,6 +30,9 @@ defineProps<{
         <p class="text-sm text-muted-foreground">
             {{ user.jobTitle }} at {{ user.companyName }}
         </p>
+        <div v-if="user.displaySocials" class="mt-2 flex flex-row justify-center">
+            <ProfileSocials :user="user" />
+        </div>
         <p class="mt-2 text-lg text-muted-foreground">
             {{ user.bio }}
         </p>

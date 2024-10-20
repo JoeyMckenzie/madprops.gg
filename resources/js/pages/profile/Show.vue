@@ -56,7 +56,6 @@ const recommendations = ref<Recommendation[]>(
         <div class="min-h-screen px-4 py-12 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-3xl">
                 <ProfileHeader :user="user" />
-
                 <div class="mt-12 space-y-6">
                     <PropCardBoard :recommendations="recommendations" :user="user" />
                 </div>
