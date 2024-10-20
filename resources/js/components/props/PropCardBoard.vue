@@ -1,22 +1,21 @@
 <script lang="ts" setup>
-import type { Recommendation } from "@/pages/profile/Show.vue";
-import PropCard from "@/components/props/PropCard.vue";
+import MadPropHeader from "@/components/props/PropCard.vue";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 defineProps<{
-    recommendations: Recommendation[];
+    madProps: App.Data.MadPropData[];
     user: App.Data.UserData;
 }>();
 </script>
 
 <template>
-    <Card v-for="(recommendation, index) in recommendations" :key="`recommendation-${index}`">
+    <Card v-for="(madProp, index) in madProps" :key="`mad-prop-${index}`">
         <CardContent class="flex flex-col items-start p-6">
-            <PropCard :recommendation="recommendation" />
+            <MadPropHeader :mad-prop="madProp" />
             <Separator class="my-2" />
             <p class="mt-2 text-muted-foreground">
-                &quot;{{ recommendation.message }}&quot;
+                &quot;{{ madProp.message }}&quot;
             </p>
         </CardContent>
     </Card>

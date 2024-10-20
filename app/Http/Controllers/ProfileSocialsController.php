@@ -18,7 +18,7 @@ final class ProfileSocialsController
         }
 
         $validated = $request->validate([
-            'x_username' => 'nullable|max:255|',
+            'x_username' => 'nullable|max:255',
             'linkedin_username' => 'nullable|max:255',
             'github_username' => 'nullable|max:255',
             'pinkary_username' => 'nullable|max:255',

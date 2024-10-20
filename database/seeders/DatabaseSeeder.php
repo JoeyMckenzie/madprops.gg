@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Prop;
+use App\Models\MadProp;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
@@ -37,13 +37,13 @@ final class DatabaseSeeder extends Seeder
         ]);
 
         /** @var Collection<int, User> $users */
-        $users = User::factory(10)->create();
+        $users = User::factory(20)->create();
 
         // Ensure each user gives and receives at least one prop
         foreach ($users as $giver) {
             $receiver = $users->except([$giver->id])->random();
 
-            Prop::create([
+            MadProp::create([
                 'giver_id' => $giver->id,
                 'receiver_id' => $receiver->id,
                 'display' => true,
@@ -57,7 +57,7 @@ final class DatabaseSeeder extends Seeder
             $giver = $users->random();
             $receiver = $users->except([$giver->id])->random();
 
-            Prop::create([
+            MadProp::create([
                 'giver_id' => $giver->id,
                 'receiver_id' => $receiver->id,
                 'display' => (bool) random_int(0, 1),

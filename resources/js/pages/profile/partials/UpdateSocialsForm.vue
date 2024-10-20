@@ -40,11 +40,11 @@ function toggleDisplaySocialsFlag() {
                         Socials
                     </CardTitle>
                     <CardDescription>
-                        Link your socials to display for other users.
+                        Link your socials for display.
                     </CardDescription>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <Label for="display_socials">Display socials</Label>
+                    <Label class="hidden sm:block" for="display_socials">Display socials</Label>
                     <Switch
                         id="display_socials"
                         :aria-disabled="displaySocialsForm.processing"

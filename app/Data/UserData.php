@@ -21,21 +21,21 @@ final class UserData extends Data
 
     public string $handle;
 
-    public string $avatar;
+    public ?string $avatar = null;
 
-    public string $jobTitle;
+    public ?string $jobTitle = null;
 
-    public string $companyName;
+    public ?string $companyName = null;
 
-    public string $bio;
+    public ?string $bio = null;
 
-    public string $displaySocials;
+    public bool $displaySocials;
 
-    public string $linkedinUsername;
+    public ?string $linkedinUsername = null;
 
-    public string $xUsername;
+    public ?string $xUsername = null;
 
-    public string $githubUsername;
+    public ?string $githubUsername = null;
 
-    public string $pinkaryUsername;
+    public ?string $pinkaryUsername = null;
 }

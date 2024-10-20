@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Data\MadPropData;
 use App\Data\UserData;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\MadProp;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -20,6 +22,7 @@ final class ProfileController extends Controller
     public function show(string $username): Response
     {
         $user = User::select([
+            'id',
             'first_name',
             'last_name',
             'job_title',
@@ -33,10 +36,20 @@ final class ProfileController extends Controller
             'linkedin_username',
             'x_username',
         ])
-            ->firstWhere('username', $username);
+            ->where('username', $username)
+            ->firstOrFail();
+
+        $userProps = MadProp::with('author')
+            ->where('receiver_id', $user->id)
+            ->where('display', true)
+            ->orderBy('position')
+            ->get();
+
+        $userPropsData = $userProps->map(fn (MadProp $prop): \App\Data\MadPropData => MadPropData::from($prop));
 
         return Inertia::render('profile/Show', [
             'user' => UserData::from($user),
+            'madProps' => $userPropsData,
         ]);
     }
 

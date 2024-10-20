@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('props', function (Blueprint $table): void {
+        Schema::create('mad_props', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('giver_id');
             $table->unsignedBigInteger('receiver_id');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('props');
+        Schema::dropIfExists('mad_props');
     }
 };

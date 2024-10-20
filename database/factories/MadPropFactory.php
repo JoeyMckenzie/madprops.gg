@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Prop;
+use App\Models\MadProp;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Override;
 
 /**
- * @extends Factory<Prop>
+ * @extends Factory<MadProp>
  */
-final class PropFactory extends Factory
+final class MadPropFactory extends Factory
 {
     /**
      * Define the model's default state.
