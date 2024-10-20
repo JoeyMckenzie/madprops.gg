@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import MadPropsGrid from "@/components/props/MadPropsGrid.vue";
+import MadPropInvitation from "@/components/mad-props/MadPropInvitation.vue";
+import MadPropsGrid from "@/components/mad-props/MadPropsGrid.vue";
 import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
 import ProfileHeader from "@/pages/profile/partials/ProfileHeader.vue";
 import { Head } from "@inertiajs/vue3";
@@ -17,7 +18,8 @@ defineProps<{
             <div class="mx-auto max-w-3xl">
                 <ProfileHeader :user="user" />
                 <div class="mt-12 space-y-6">
-                    <MadPropsGrid :mad-props="madProps" :user="user" />
+                    <MadPropsGrid v-if="madProps?.length > 0" :mad-props="madProps" :user="user" />
+                    <MadPropInvitation v-else :user="user" />
                 </div>
             </div>
         </div>

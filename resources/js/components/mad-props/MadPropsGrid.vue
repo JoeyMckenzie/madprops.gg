@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import MadPropHeader from "@/components/props/MadPropHeader.vue";
+import MadPropHeader from "@/components/mad-props/MadPropHeader.vue";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
