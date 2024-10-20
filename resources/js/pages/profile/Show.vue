@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import MadPropsGrid from "@/components/props/PropCardBoard.vue";
+import MadPropsGrid from "@/components/props/MadPropsGrid.vue";
 import AuthenticatedLayout from "@/layouts/AuthenticatedLayout.vue";
 import ProfileHeader from "@/pages/profile/partials/ProfileHeader.vue";
 import { Head } from "@inertiajs/vue3";

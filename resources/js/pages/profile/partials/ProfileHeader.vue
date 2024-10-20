@@ -11,7 +11,7 @@ defineProps<{
 <template>
     <div class="text-center">
         <Avatar class="mx-auto size-32">
-            <AvatarImage :alt="user.username" :src="user.avatar" />
+            <AvatarImage v-if="user.avatar" :alt="user.username" :src="user.avatar" />
             <AvatarFallback>{{ user.initials }}</AvatarFallback>
         </Avatar>
         <h2 class="mt-4 text-2xl font-bold">

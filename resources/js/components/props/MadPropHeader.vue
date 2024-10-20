@@ -10,7 +10,7 @@ defineProps<{
 <template>
     <div class="flex flex-row gap-x-2">
         <Avatar class="size-16">
-            <AvatarImage :alt="madProp.author.username" :src="madProp.author.avatar" />
+            <AvatarImage v-if="madProp.author.avatar" :alt="madProp.author.username" :src="madProp.author.avatar" />
             <AvatarFallback>{{ madProp.author.initials }}</AvatarFallback>
         </Avatar>
         <div>

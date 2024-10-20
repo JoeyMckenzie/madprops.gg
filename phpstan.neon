@@ -6,3 +6,4 @@ parameters:
         - database/
     ignoreErrors:
         - '#Dynamic call to static method Illuminate\\Http\\Request::validate\(\).#'
+        - '#Dynamic call to static method Illuminate\\Database\\Eloquent\\Builder<App\\Models\\[a-zA-Z]+>::orderBy().#'
