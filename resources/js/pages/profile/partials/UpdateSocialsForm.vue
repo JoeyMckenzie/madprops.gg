@@ -6,12 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useToast } from "@/components/ui/toast";
 import { Icon } from "@iconify/vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 const user = usePage().props.auth.user;
 const displaySocials = ref(user.display_socials);
+const { toast } = useToast();
 
 const displaySocialsForm = useForm({
     display_socials: user.display_socials,
@@ -29,6 +31,15 @@ function toggleDisplaySocialsFlag() {
     displaySocialsForm.display_socials = displaySocials.value;
     displaySocialsForm.patch(route("profile.socials.display.update"), { preserveScroll: true });
 }
+
+watchEffect(() => {
+    if (socialsForm.recentlySuccessful) {
+        toast({
+            title: "Success!",
+            description: "Your socials has been updated.",
+        });
+    }
+});
 </script>
 
 <template>
@@ -144,20 +155,6 @@ function toggleDisplaySocialsFlag() {
                         <Button :disabled="socialsForm.processing">
                             Save
                         </Button>
-
-                        <Transition
-                            enter-active-class="transition ease-in-out"
-                            enter-from-class="opacity-0"
-                            leave-active-class="transition ease-in-out"
-                            leave-to-class="opacity-0"
-                        >
-                            <p
-                                v-if="socialsForm.recentlySuccessful"
-                                class="text-sm text-muted-foreground"
-                            >
-                                Saved.
-                            </p>
-                        </Transition>
                     </div>
                 </form>
             </CardContent>

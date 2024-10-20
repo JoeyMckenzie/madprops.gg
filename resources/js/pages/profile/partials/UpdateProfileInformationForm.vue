@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/toast";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
+import { watchEffect } from "vue";
 
 defineProps<{
     mustVerifyEmail?: boolean;
@@ -12,12 +14,22 @@ defineProps<{
 }>();
 
 const user = usePage().props.auth.user;
+const { toast } = useToast();
 
 const form = useForm({
     first_name: user.first_name,
     last_name: user.last_name,
     username: user.username,
     email: user.email,
+});
+
+watchEffect(() => {
+    if (form.recentlySuccessful) {
+        toast({
+            title: "Success!",
+            description: "Your profile information has been updated.",
+        });
+    }
 });
 </script>
 
@@ -35,7 +47,7 @@ const form = useForm({
             <CardContent>
                 <form
                     class="grid gap-6"
-                    @submit.prevent="form.patch(route('profile.update'))"
+                    @submit.prevent="form.patch(route('profile.update'), { preserveScroll: true })"
                 >
                     <div class="grid grid-cols-2 gap-2">
                         <div class="grid gap-2">
@@ -110,20 +122,6 @@ const form = useForm({
                         <Button :disabled="form.processing">
                             Save
                         </Button>
-
-                        <Transition
-                            enter-active-class="transition ease-in-out"
-                            enter-from-class="opacity-0"
-                            leave-active-class="transition ease-in-out"
-                            leave-to-class="opacity-0"
-                        >
-                            <p
-                                v-if="form.recentlySuccessful"
-                                class="text-sm text-muted-foreground"
-                            >
-                                Saved.
-                            </p>
-                        </Transition>
                     </div>
                 </form>
             </CardContent>

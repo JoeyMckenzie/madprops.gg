@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import ApplicationLogo from "@/components/ApplicationLogo.vue";
 import DropdownMenu from "@/components/DropdownMenu.vue";
+import { Toaster } from "@/components/ui/toast";
 import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
@@ -52,6 +53,7 @@ const userIsAvailable = computed(() => !!user.props.auth.user);
             <!-- Page Content -->
             <main>
                 <slot />
+                <Toaster />
             </main>
         </div>
     </div>

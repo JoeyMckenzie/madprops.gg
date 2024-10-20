@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/toast";
 import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 const passwordInput = ref<HTMLInputElement | null>(null);
 const currentPasswordInput = ref<HTMLInputElement | null>(null);
+const { toast } = useToast();
 
 const form = useForm({
     current_password: "",
@@ -34,6 +36,15 @@ function updatePassword() {
         },
     });
 }
+
+watchEffect(() => {
+    if (form.recentlySuccessful) {
+        toast({
+            title: "Success!",
+            description: "Your password has been updated.",
+        });
+    }
+});
 </script>
 
 <template>
