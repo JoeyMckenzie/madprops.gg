@@ -22,7 +22,7 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $testUser = User::create([
             'first_name' => 'Test',
             'last_name' => 'User',
             'email' => 'test@example.com',
@@ -65,5 +65,15 @@ final class DatabaseSeeder extends Seeder
                 'message' => fake()->sentences(asText: true),
             ]);
         }
+
+        $otherUser = User::whereKeyNot($testUser->id)->first();
+        assert($otherUser !== null);
+        MadProp::create([
+            'giver_id' => $otherUser->id,
+            'receiver_id' => $testUser->id,
+            'display' => true,
+            'position' => 1,
+            'message' => fake()->sentences(asText: true),
+        ]);
     }
 }
