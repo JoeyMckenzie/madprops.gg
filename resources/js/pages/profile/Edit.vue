@@ -18,16 +18,15 @@ defineProps<{
 
     <AuthenticatedLayout>
         <div class="py-12">
-            <div class="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
-                <UpdateUserAvatarForm class="max-w-xl" />
+            <div class="mx-auto max-w-2xl space-y-6 px-4 sm:px-6 lg:px-8">
+                <UpdateUserAvatarForm />
                 <UpdateProfileInformationForm
                     :must-verify-email="mustVerifyEmail"
                     :status="status"
-                    class="max-w-xl"
                 />
-                <UpdatePasswordForm class="max-w-xl" />
-                <UpdateSocialsForm class="max-w-xl" />
-                <DeleteUserForm class="max-w-xl" />
+                <UpdatePasswordForm />
+                <UpdateSocialsForm />
+                <DeleteUserForm />
             </div>
         </div>
     </AuthenticatedLayout>

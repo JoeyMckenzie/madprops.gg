@@ -4,29 +4,21 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Profile\ProfileSocialsUpdateRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
-use function redirect;
-
-final class ProfileSocialsController
+final class ProfileSocialsController extends Controller
 {
-    public function update(Request $request): RedirectResponse
+    public function update(ProfileSocialsUpdateRequest $request): RedirectResponse
     {
         if ($request->user() === null) {
-            return redirect()->back();
+            return Redirect::route('profile.edit');
         }
 
-        $validated = $request->validate([
-            'x_username' => 'nullable|max:255',
-            'linkedin_username' => 'nullable|max:255',
-            'github_username' => 'nullable|max:255',
-            'pinkary_username' => 'nullable|max:255',
-        ]);
-
-        $request->user()->fill($validated);
+        $request->user()->fill($request->validated());
         $request->user()->save();
 
-        return redirect()->back();
+        return Redirect::route('profile.edit');
     }
 }

@@ -28,7 +28,7 @@ final class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'username' => 'test.user',
             'email_verified_at' => now(),
-            'bio' => fake()->text(255),
+            'bio' => fake()->text(90),
             'company_name' => fake()->company(),
             'job_title' => fake()->jobTitle(),
             'avatar' => fake()->imageUrl(),

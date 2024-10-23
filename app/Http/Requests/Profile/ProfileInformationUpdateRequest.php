@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Profile;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Unique;
 
-final class ProfileUpdateRequest extends FormRequest
+final class ProfileInformationUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -32,7 +32,7 @@ final class ProfileUpdateRequest extends FormRequest
             ],
             'job_title' => ['nullable', 'string', 'max:255'],
             'company_name' => ['nullable', 'string', 'max:255'],
-            'bio' => ['nullable', 'string', 'max:512'],
+            'bio' => ['nullable', 'string', 'max:100'],
         ];
     }
 }

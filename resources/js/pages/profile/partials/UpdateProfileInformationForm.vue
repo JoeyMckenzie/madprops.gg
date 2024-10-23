@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/toast";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
-import { watchEffect } from "vue";
+import { computed, watchEffect } from "vue";
 
 defineProps<{
     mustVerifyEmail?: boolean;
     status?: string;
 }>();
+
+const BIO_CHARACTER_COUNT = 100;
 
 const user = usePage().props.auth.user;
 const { toast } = useToast();
@@ -21,7 +24,12 @@ const form = useForm({
     last_name: user.last_name,
     username: user.username,
     email: user.email,
+    job_title: user.job_title,
+    bio: user.bio,
+    company_name: user.company_name,
 });
+
+const bioCharacterCount = computed(() => form.bio.length);
 
 watchEffect(() => {
     if (form.recentlySuccessful) {
@@ -41,7 +49,7 @@ watchEffect(() => {
                     Profile Information
                 </CardTitle>
                 <CardDescription>
-                    Update your account's profile information and email address.
+                    Update your account's profile information.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -98,6 +106,49 @@ watchEffect(() => {
                             type="email"
                         />
                         <InputError :message="form.errors.email" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="job_title">Job Title</Label>
+                        <Input
+                            id="job_title"
+                            v-model="form.job_title"
+                            autocomplete="job-title"
+                            required
+                            type="text"
+                        />
+                        <InputError :message="form.errors.job_title" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="company_name">Company</Label>
+                        <Input
+                            id="company_name"
+                            v-model="form.company_name"
+                            autocomplete="company-name"
+                            required
+                            type="text"
+                        />
+                        <InputError :message="form.errors.job_title" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="bio">Bio</Label>
+                        <Textarea
+                            id="bio"
+                            v-model="form.bio"
+                            :maxlength="BIO_CHARACTER_COUNT"
+                            autocomplete="biography"
+                            required
+                            type="text"
+                        />
+                        <InputError :message="form.errors.bio" />
+                        <p
+                            :class="{ 'text-red-400': BIO_CHARACTER_COUNT - bioCharacterCount < 10 }"
+                            class="text-sm text-muted-foreground"
+                        >
+                            {{ bioCharacterCount }}/{{ BIO_CHARACTER_COUNT }} characters
+                        </p>
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">

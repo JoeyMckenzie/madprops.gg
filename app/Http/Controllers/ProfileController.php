@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Data\MadPropData;
 use App\Data\UserData;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\Profile\ProfileInformationUpdateRequest;
 use App\Models\MadProp;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -45,7 +45,7 @@ final class ProfileController extends Controller
             ->orderBy('position')
             ->get();
 
-        $userPropsData = $userProps->map(fn (MadProp $prop): \App\Data\MadPropData => MadPropData::from($prop));
+        $userPropsData = $userProps->map(fn (MadProp $prop): MadPropData => MadPropData::from($prop));
 
         return Inertia::render('profile/Show', [
             'user' => UserData::from($user),
@@ -70,10 +70,10 @@ final class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileInformationUpdateRequest $request): RedirectResponse
     {
         if ($request->user() === null) {
-            return abort(403);
+            return Redirect::route('home');
         }
 
         $request->user()->fill($request->validated());

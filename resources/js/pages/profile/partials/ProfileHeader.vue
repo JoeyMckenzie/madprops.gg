@@ -30,7 +30,7 @@ defineProps<{
         <p class="text-sm text-muted-foreground">
             {{ user.jobTitle }} at {{ user.companyName }}
         </p>
-        <div v-if="user.displaySocials" class="mt-2 flex flex-row justify-center">
+        <div v-if="user.displaySocials" class="mt-4 flex flex-row justify-center">
             <ProfileSocials :user="user" />
         </div>
         <p class="mt-2 text-lg text-muted-foreground">

@@ -2,21 +2,40 @@
 import InputError from "@/components/InputError.vue";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Input from "@/components/ui/input/Input.vue";
 import Label from "@/components/ui/label/Label.vue";
+import { useToast } from "@/components/ui/toast";
 import { Icon } from "@iconify/vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-
-defineProps<{
-    mustVerifyEmail?: boolean;
-    status?: string;
-}>();
+import { ref } from "vue";
 
 const user = usePage().props.auth.user;
+const photoInputRef = ref<HTMLInputElement | null>(null);
+const { toast } = useToast();
 
 const form = useForm({
     avatar: user.avatar,
 });
+
+function uploadAvatar(event: Event) {
+    const fileEvent = event as Event & { target: HTMLInputElement };
+    if (fileEvent?.target?.files?.[0]) {
+        form.avatar = fileEvent.target.files[0];
+        form.post(route("profile.avatar"), {
+            onFinish: () => {
+                toast({
+                    title: "Success!",
+                    description: "Your avatar has been updated.",
+                });
+            },
+        });
+    }
+}
+
+function clickAvatarInput() {
+    if (photoInputRef?.value) {
+        photoInputRef.value.click();
+    }
+}
 </script>
 
 <template>
@@ -27,44 +46,32 @@ const form = useForm({
                     Profile Image
                 </CardTitle>
                 <CardDescription>
-                    Update your avatar to display to other users.
+                    Update your avatar as a JPG or PNG. 1MB max.
                 </CardDescription>
-                <Transition
-                    enter-active-class="transition ease-in-out"
-                    enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out"
-                    leave-to-class="opacity-0"
-                >
-                    <p
-                        v-if="form.recentlySuccessful"
-                        class="text-sm text-muted-foreground"
-                    >
-                        Saved.
-                    </p>
-                </Transition>
+                <InputError :message="form.errors.avatar" />
             </CardHeader>
             <CardContent>
-                <form @submit.prevent="form.patch(route('profile.update'))">
-                    <div class="relative mt-4 inline-flex">
-                        <Avatar class="size-24 cursor-pointer">
-                            <AvatarImage :alt="user.username" :src="user.avatar" />
-                            <AvatarFallback>User</AvatarFallback>
-                        </Avatar>
-                        <Label
-                            class="absolute bottom-0 right-0 cursor-pointer rounded-full bg-muted p-1 shadow-md hover:text-muted-foreground"
-                            for="avatar"
-                        >
-                            <Icon :size="16" icon="mdi:camera" />
-                        </Label>
-                        <Input
-                            id="avatar"
-                            accept="image/*"
-                            class="hidden"
-                            type="file"
-                        />
-                        <InputError :message="form.errors.avatar" />
-                    </div>
-                </form>
+                <div class="group relative mt-4 inline-flex">
+                    <Avatar class="size-24 cursor-pointer" @click="clickAvatarInput">
+                        <AvatarImage :alt="$page.props.auth.user.username" :src="$page.props.auth.user.avatar" />
+                        <AvatarFallback>User</AvatarFallback>
+                    </Avatar>
+                    <Label
+                        class="absolute bottom-0 right-0 cursor-pointer rounded-full bg-muted p-1 shadow-md group-hover:text-muted-foreground"
+                        for="avatar"
+                    >
+                        <Icon :size="16" icon="mdi:camera" />
+                    </Label>
+                    <input
+                        id="avatar"
+                        ref="photoInputRef"
+                        accept="image/*"
+                        class="hidden"
+                        name="profile photo"
+                        type="file"
+                        @input="uploadAvatar($event)"
+                    >
+                </div>
             </CardContent>
         </Card>
     </section>

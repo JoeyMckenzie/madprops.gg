@@ -33,7 +33,7 @@ final class UserFactory extends Factory
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'bio' => fake()->text(255),
+            'bio' => fake()->text(95),
             'company_name' => fake()->company(),
             'job_title' => fake()->jobTitle(),
             'avatar' => fake()->imageUrl(),

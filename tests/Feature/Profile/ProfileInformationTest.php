@@ -32,10 +32,10 @@ test('profile information can be updated', function (): void {
 
     $user->refresh();
 
-    $this->assertSame('John Test', $user->full_name);
-    $this->assertSame('john.test', $user->username);
-    $this->assertSame('john@gmail.com', $user->email);
-    $this->assertNull($user->email_verified_at);
+    expect($user->full_name)->toEqual('John Test')
+        ->and($user->username)->toEqual('john.test')
+        ->and($user->email)->toEqual('john@gmail.com')
+        ->and($user->email_verified_at)->toBeNull();
 });
 
 test('email verification status is unchanged when the email address is unchanged', function (): void {
@@ -54,7 +54,7 @@ test('email verification status is unchanged when the email address is unchanged
         ->assertSessionHasNoErrors()
         ->assertRedirect('/profile');
 
-    $this->assertNotNull($user->refresh()->email_verified_at);
+    expect($user->refresh()->email_verified_at)->not()->toBeNull();
 });
 
 test('user can delete their account', function (): void {
@@ -71,7 +71,7 @@ test('user can delete their account', function (): void {
         ->assertRedirect('/');
 
     $this->assertGuest();
-    $this->assertNull($user->fresh());
+    expect($user->fresh())->toBeNull();
 });
 
 test('correct password must be provided to delete account', function (): void {
@@ -88,5 +88,5 @@ test('correct password must be provided to delete account', function (): void {
         ->assertSessionHasErrors('password')
         ->assertRedirect('/profile');
 
-    $this->assertNotNull($user->fresh());
+    expect($user->fresh())->not()->toBeNull();
 });

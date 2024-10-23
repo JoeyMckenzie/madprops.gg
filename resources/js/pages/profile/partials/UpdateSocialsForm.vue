@@ -15,11 +15,8 @@ const user = usePage().props.auth.user;
 const displaySocials = ref(user.display_socials);
 const { toast } = useToast();
 
-const displaySocialsForm = useForm({
+const form = useForm({
     display_socials: user.display_socials,
-});
-
-const socialsForm = useForm({
     x_username: user.x_username,
     linkedin_username: user.linkedin_username,
     github_username: user.github_username,
@@ -28,12 +25,12 @@ const socialsForm = useForm({
 
 function toggleDisplaySocialsFlag() {
     displaySocials.value = !displaySocials.value;
-    displaySocialsForm.display_socials = displaySocials.value;
-    displaySocialsForm.patch(route("profile.socials.display.update"), { preserveScroll: true });
+    form.display_socials = displaySocials.value;
+    form.patch(route("profile.socials.update"), { preserveScroll: true });
 }
 
 watchEffect(() => {
-    if (socialsForm.recentlySuccessful) {
+    if (form.recentlySuccessful) {
         toast({
             title: "Success!",
             description: "Your socials has been updated.",
@@ -58,10 +55,10 @@ watchEffect(() => {
                     <Label class="hidden sm:block" for="display_socials">Display socials</Label>
                     <Switch
                         id="display_socials"
-                        :aria-disabled="displaySocialsForm.processing"
+                        :aria-disabled="form.processing"
                         :checked="displaySocials"
-                        :default-checked="displaySocialsForm.display_socials"
-                        :disabled="displaySocialsForm.processing"
+                        :default-checked="form.display_socials"
+                        :disabled="form.processing"
                         @update:checked="toggleDisplaySocialsFlag"
                     />
                 </div>
@@ -69,15 +66,15 @@ watchEffect(() => {
             <CardContent class="grid gap-4">
                 <form
                     class="grid gap-6"
-                    @submit.prevent="socialsForm.patch(route('profile.socials.update'), { preserveScroll: true })"
+                    @submit.prevent="form.patch(route('profile.socials.update'), { preserveScroll: true })"
                 >
                     <div class="grid gap-2">
                         <div class="relative items-center">
                             <Input
                                 id="x_username"
-                                v-model="socialsForm.x_username"
-                                :aria-disabled="!displaySocialsForm.display_socials"
-                                :disabled="!displaySocialsForm.display_socials"
+                                v-model="form.x_username"
+                                :aria-disabled="!form.display_socials"
+                                :disabled="!form.display_socials"
                                 autocomplete="x_username"
                                 autofocus
                                 class="w-full pl-10"
@@ -88,16 +85,16 @@ watchEffect(() => {
                                 <Icon class="text-muted-foreground" icon="prime:twitter" />
                             </span>
                         </div>
-                        <InputError :message="socialsForm.errors.x_username" />
+                        <InputError :message="form.errors.x_username" />
                     </div>
 
                     <div class="grid gap-2">
                         <div class="relative items-center">
                             <Input
                                 id="linkedin_username"
-                                v-model="socialsForm.linkedin_username"
-                                :aria-disabled="!displaySocialsForm.display_socials"
-                                :disabled="!displaySocialsForm.display_socials"
+                                v-model="form.linkedin_username"
+                                :aria-disabled="!form.display_socials"
+                                :disabled="!form.display_socials"
                                 autocomplete="linkedin_username"
                                 autofocus
                                 class="w-full pl-10"
@@ -108,16 +105,16 @@ watchEffect(() => {
                                 <Icon class="size-5 text-muted-foreground" icon="mdi:linkedin" />
                             </span>
                         </div>
-                        <InputError :message="socialsForm.errors.linkedin_username" />
+                        <InputError :message="form.errors.linkedin_username" />
                     </div>
 
                     <div class="grid gap-2">
                         <div class="relative items-center">
                             <Input
                                 id="github_username"
-                                v-model="socialsForm.github_username"
-                                :aria-disabled="!displaySocialsForm.display_socials"
-                                :disabled="!displaySocialsForm.display_socials"
+                                v-model="form.github_username"
+                                :aria-disabled="!form.display_socials"
+                                :disabled="!form.display_socials"
                                 autocomplete="github_username"
                                 autofocus
                                 class="w-full pl-10"
@@ -128,16 +125,16 @@ watchEffect(() => {
                                 <Icon class="size-5 text-muted-foreground" icon="mdi:github" />
                             </span>
                         </div>
-                        <InputError :message="socialsForm.errors.github_username" />
+                        <InputError :message="form.errors.github_username" />
                     </div>
 
                     <div class="grid gap-2">
                         <div class="relative items-center">
                             <Input
                                 id="pinkary_username"
-                                v-model="socialsForm.pinkary_username"
-                                :aria-disabled="!displaySocialsForm.display_socials"
-                                :disabled="!displaySocialsForm.display_socials"
+                                v-model="form.pinkary_username"
+                                :aria-disabled="!form.display_socials"
+                                :disabled="!form.display_socials"
                                 autocomplete="pinkary_username"
                                 autofocus
                                 class="w-full pl-10"
@@ -148,11 +145,11 @@ watchEffect(() => {
                                 <PinkaryIcon />
                             </span>
                         </div>
-                        <InputError :message="socialsForm.errors.github_username" />
+                        <InputError :message="form.errors.github_username" />
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="socialsForm.processing">
+                        <Button :disabled="form.processing">
                             Save
                         </Button>
                     </div>
