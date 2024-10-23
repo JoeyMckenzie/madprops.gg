@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@iconify/vue";
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const props = defineProps<{
@@ -40,10 +40,17 @@ const currentUserIsViewing = computed(() => !!currentUser && currentUser.usernam
             </CardDescription>
         </CardHeader>
         <CardContent>
-            <Button class="w-full">
-                Give props
-                <Icon class="ml-1 size-4" icon="mdi:arrow-right" />
-            </Button>
+            <Link
+                :href="route('mad-props.create', {
+                    id: user.username,
+                })"
+                class="w-full"
+            >
+                <Button class="w-full">
+                    Give props
+                    <Icon class="ml-1 size-4" icon="mdi:arrow-right" />
+                </Button>
+            </Link>
         </CardContent>
     </Card>
 </template>
