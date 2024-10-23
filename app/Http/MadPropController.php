@@ -11,10 +11,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Psr\Log\LoggerInterface;
 use Request;
 
 final class MadPropController extends Controller
 {
+    public function __construct(private readonly LoggerInterface $logger) {}
+
     public function create(string $username): Response
     {
         $user = User::select([
@@ -40,8 +43,10 @@ final class MadPropController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, string $username): RedirectResponse
     {
-        return Redirect::route('home');
+        $this->logger->info("Creating prop for $username");
+
+        return Redirect::route('profile.show', $username);
     }
 }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import InputError from "@/components/InputError.vue";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -54,10 +54,11 @@ watchEffect(() => {
             </CardHeader>
             <CardContent>
                 <form
-                    class="grid gap-6"
+                    id="update-profile-info-form"
+                    class="grid gap-4"
                     @submit.prevent="form.patch(route('profile.update'), { preserveScroll: true })"
                 >
-                    <div class="grid grid-cols-2 gap-2">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
                         <div class="grid gap-2">
                             <Label for="first_name">First name</Label>
                             <Input
@@ -168,14 +169,13 @@ watchEffect(() => {
                             A new verification link has been sent to your email address.
                         </div>
                     </div>
-
-                    <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing">
-                            Save
-                        </Button>
-                    </div>
                 </form>
             </CardContent>
+            <CardFooter>
+                <Button :disabled="form.processing" form="update-profile-info-form" type="submit">
+                    Save
+                </Button>
+            </CardFooter>
         </Card>
     </section>
 </template>

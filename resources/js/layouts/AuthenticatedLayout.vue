@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import ApplicationLogo from "@/components/ApplicationLogo.vue";
 import DropdownMenu from "@/components/DropdownMenu.vue";
+import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/toast";
+import { Icon } from "@iconify/vue";
 import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
@@ -40,11 +42,16 @@ const userIsAvailable = computed(() => !!user.props.auth.user);
                             </div>
                         </div>
 
-                        <div class="ms-6 flex items-center">
-                            <!-- Settings Dropdown -->
-                            <div class="relative ms-3">
-                                <DropdownMenu />
-                            </div>
+                        <div class="flex flex-row items-center space-x-1">
+                            <Link :href="route('profile.show', { username: $page.props.auth.user.username })">
+                                <Button variant="outline">
+                                    <Icon class="size-6 text-muted-foreground" icon="mdi:home" />
+                                </Button>
+                            </Link>
+                            <Button variant="outline">
+                                <Icon class="size-6 text-muted-foreground" icon="mingcute:notification-fill" />
+                            </Button>
+                            <DropdownMenu />
                         </div>
                     </div>
                 </div>

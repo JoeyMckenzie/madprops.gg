@@ -33,12 +33,8 @@ defineProps<{
         <div v-if="user.displaySocials" class="mt-4 flex flex-row justify-center">
             <ProfileSocials :user="user" />
         </div>
-        <p class="mt-2 text-lg text-muted-foreground">
+        <p class="mt-2 text-muted-foreground">
             {{ user.bio }}
         </p>
     </div>
 </template>
-
-<style scoped>
-
-</style>
